@@ -4,14 +4,30 @@ export default class AddDependency extends Component {
     constructor() {
         super();
         this.state = {
+            id: 0,
             name: "",
             coordinator: "",
             max_users: "",
             location: "",
-            active: false,
+            active: true,
         }
     }
-    
+
+    static getDerivedStateFromProps = (nextProps, prevState) => {
+        console.log(nextProps.dependency.id);
+        if (nextProps.dependency.id !== prevState.id) {
+            return {
+                id: nextProps.dependency.id,
+                name: nextProps.dependency.name,
+                coordinator: nextProps.dependency.coordinator,
+                max_users: nextProps.dependency.max_users,
+                location: nextProps.dependency.location,
+                active: nextProps.dependency.active
+            }
+        }
+        return null;
+    }
+
     handleInputChange = (event) => {
         this.setState({ [event.target.id]: event.target.value });
     }
@@ -22,8 +38,12 @@ export default class AddDependency extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let dependency = this.state;
-        this.props.handleNewDependency(dependency);
+        console.log(this.state.id)
+        if (this.state.id === 0) {
+            this.setState({ id: 1});
+        }
+        console.log(this.state.id);
+        this.props.handleNewDependency(this.state);
     }
 
     render() {
@@ -54,7 +74,7 @@ export default class AddDependency extends Component {
                         </div>
                         <div className="form-check">
                             <input className="form-check-input" type="checkbox" id="active" value={this.state.active}
-                                checked={this.state.active} onChange={this.handleBoxChange}/>
+                                checked={this.state.active} onChange={this.handleBoxChange} />
                             <label className="form-check-label" htmlFor="active">
                                 Activa
                             </label>
