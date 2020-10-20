@@ -46,11 +46,18 @@ export default class AddDependency extends Component {
         this.props.handleNewDependency(this.state);
     }
 
+    ShowClearButton = () => {
+        if (this.state.id !== 0){
+            return <button type="button" className="btn btn-primary" onClick={this.props.handleClearFields}>Cancel Edit</button>
+        }
+        return null;   
+    }
+
     render() {
         return (
             <div>
                 <div className="container">
-                    <h3> Agregar Dependencia </h3>
+                    <h3> {this.state.id === 0 ? "Agregar" : "Editar"} Dependencia </h3>
                     <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                             <label>Nombre</label>
@@ -79,7 +86,10 @@ export default class AddDependency extends Component {
                                 Activa
                             </label>
                         </div>
-                        <button type="button submit" className="btn btn-primary"> <i className="fa fa-plus" aria-hidden="true"></i> </button>
+                        <div className="container">
+                            <button type="button submit" className="btn btn-primary"> <i className="fa fa-plus" aria-hidden="true"></i> </button>
+                            <this.ShowClearButton />
+                        </div>
                     </form>
                 </div>
             </div>

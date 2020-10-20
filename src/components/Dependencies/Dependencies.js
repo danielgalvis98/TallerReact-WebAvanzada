@@ -70,6 +70,12 @@ export default class Dependencies extends Component {
         return dependenciesTable;
     }
 
+    clearFields = () =>{
+        this.setState({
+            dependencyToEdit: this.clearDependency()
+        })    
+    }
+
     clearDependency = () => {
         return {
             id: 0,
@@ -105,7 +111,7 @@ export default class Dependencies extends Component {
                     </table>
                 </div>
                 <div className="container">
-                    <AddDependency handleNewDependency={this.addDependency} dependency={this.state.dependencyToEdit} />
+                    <AddDependency handleNewDependency={this.addDependency} dependency={this.state.dependencyToEdit} handleClearFields={this.clearFields}/>
                 </div>
             </div>
         )
