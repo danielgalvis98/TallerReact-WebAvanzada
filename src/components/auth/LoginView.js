@@ -1,12 +1,11 @@
 import React from 'react';
-import { Link as RouterLink} from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import {
   Box,
   Button,
   Container,
-  Link,
+ 
   TextField,
   Typography,
   makeStyles
@@ -113,7 +112,7 @@ const LoginView = () => {
                 <Box my={2}>
                   <Button
                     color="primary"
-                    disabled={isSubmitting}
+                    
                     fullWidth
                     size="large"
                     type="submit"
@@ -122,20 +121,7 @@ const LoginView = () => {
                     Sign in now
                   </Button>
                 </Box>
-                <Typography
-                  color="textSecondary"
-                  variant="body1"
-                >
-                  Don&apos;t have an account?
-                  {' '}
-                  <Link
-                    component={RouterLink}
-                    to="/register"
-                    variant="h6"
-                  >
-                    Sign up
-                  </Link>
-                </Typography>
+           
               </form>
             )}
           </Formik>

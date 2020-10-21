@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import db from '../../config/firebase';
 import User from './User';
 import AddUser from './AddUser';
+import {
+    Box,
 
+    CardContent,
+    TextField,
+    InputAdornment,
+ 
+  } from '@material-ui/core';
 
 export default class Users extends Component {
 
@@ -92,8 +99,30 @@ export default class Users extends Component {
 
     render() {
         return (
+            
             <div>
-                <div className="container">
+               
+                <Box  >
+       
+          <CardContent>
+            <Box maxWidth={400}>
+              <TextField
+                fullWidth
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                 
+                    </InputAdornment>
+                  )
+                }}
+                placeholder="Buscar Usuario"
+                variant="outlined"
+              />
+            </Box>
+          </CardContent>
+        
+      </Box>
+      <div className="container">
                     <h3>Check out the users!</h3>
                 </div>
                 <div className="container">

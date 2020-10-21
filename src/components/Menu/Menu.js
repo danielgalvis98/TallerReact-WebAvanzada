@@ -8,7 +8,6 @@ import {Link} from 'react-router-dom'
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-import PersonAddRoundedIcon from '@material-ui/icons/PersonAddRounded';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -60,7 +59,7 @@ export default function PrimarySearchAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
         
-          <Link to="/login" >
+          <Link to="/" >
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -71,19 +70,7 @@ export default function PrimarySearchAppBar() {
             </IconButton>
             </Link>
 
-            <Link to="/register" >
-            <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              
-             
-            > 
-            
-              <PersonAddRoundedIcon />
-            </IconButton>
-            </Link>
+       
           </div>
          
          

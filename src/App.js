@@ -4,6 +4,7 @@ import Dependencies from './components/Dependencies/Dependencies'
 import Users from './components/Users/Users'
 import Menu from './components/Menu/Menu'
 import Login from './components/auth/LoginView'
+import Register from './components/auth/RegisterView'
 import Error from './components/errors/NotFoundView'
 
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
@@ -14,8 +15,11 @@ function App() {
       <Router>
       <Menu />
         <Switch>
-        <Route path="/login">
-          <Login></Login>
+        <Route path="/users">
+          <Users></Users>
+        </Route>
+        <Route path="/register">
+          <Register></Register>
         </Route>
     
 
@@ -23,7 +27,7 @@ function App() {
           <Dependencies></Dependencies>
         </Route>
         <Route exact path="/">
-          <Users></Users>
+        <Login></Login>
         </Route>
 
         <Route path="*">
