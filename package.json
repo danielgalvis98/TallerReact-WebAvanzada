@@ -10,9 +10,13 @@
     "@testing-library/user-event": "^7.2.1",
     "firebase": "^7.23.0",
     "fontsource-roboto": "^3.0.3",
+    "formik": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3"
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "yup": "^0.29.3"
   },
   "scripts": {
     "start": "react-scripts start",
