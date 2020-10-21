@@ -152,10 +152,17 @@ export default class AddUser extends Component {
                         </div>
                         <div className="form-group">
                             <label>Dependencia</label>
-                            <input className="form-control" type="text" id="dependency" value={this.state.dependency}
-                                onChange={this.handleInputChange} noValidate/>
-                            {errors.dependency.length > 0 && 
-                                <div className = 'alert alert-danger'>{errors.dependency}</div>}
+                           
+                          <select class="form-control" id="dependency" value={this.state.dependency} onChange={this.handleInputChange} noValidate>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                          {errors.dependency.length > 0 && 
+                                                      <div className = 'alert alert-danger'>{errors.dependency}</div>}
+                            
                         </div>
                         <div className="form-group">
                             <label>Valido Hasta</label>
