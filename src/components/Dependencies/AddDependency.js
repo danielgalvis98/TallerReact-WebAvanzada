@@ -46,7 +46,6 @@ export default class AddDependency extends Component {
     };
 
     handleInputChange = (event) => {
-        event.preventDefault();
         let errors = this.state.errors;
         const { id, value } = event.target;
         switch (id) {
@@ -74,9 +73,7 @@ export default class AddDependency extends Component {
     }
 
     handleBoxChange = (event) => {
-        event.preventDefault();
         this.setState({ [event.target.id]: event.target.checked });
-        alert(this.state.active);
     }
 
     handleSubmit = (e) => {
