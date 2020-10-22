@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/TallerReact-WebAvanzada/static/css/main.523f09c5.chunk.css",
-    "main.js": "/TallerReact-WebAvanzada/static/js/main.be29f3c9.chunk.js",
-    "main.js.map": "/TallerReact-WebAvanzada/static/js/main.be29f3c9.chunk.js.map",
+    "main.js": "/TallerReact-WebAvanzada/static/js/main.cbb56d17.chunk.js",
+    "main.js.map": "/TallerReact-WebAvanzada/static/js/main.cbb56d17.chunk.js.map",
     "runtime-main.js": "/TallerReact-WebAvanzada/static/js/runtime-main.9c1f2752.js",
     "runtime-main.js.map": "/TallerReact-WebAvanzada/static/js/runtime-main.9c1f2752.js.map",
     "static/js/2.5f9c9eeb.chunk.js": "/TallerReact-WebAvanzada/static/js/2.5f9c9eeb.chunk.js",
     "static/js/2.5f9c9eeb.chunk.js.map": "/TallerReact-WebAvanzada/static/js/2.5f9c9eeb.chunk.js.map",
     "index.html": "/TallerReact-WebAvanzada/index.html",
-    "precache-manifest.2ad9cac74a5795bbe0cac0c0d2f3e0cb.js": "/TallerReact-WebAvanzada/precache-manifest.2ad9cac74a5795bbe0cac0c0d2f3e0cb.js",
+    "precache-manifest.f65eb26d94ee6bb8dd6cccf205990d65.js": "/TallerReact-WebAvanzada/precache-manifest.f65eb26d94ee6bb8dd6cccf205990d65.js",
     "service-worker.js": "/TallerReact-WebAvanzada/service-worker.js",
     "static/css/main.523f09c5.chunk.css.map": "/TallerReact-WebAvanzada/static/css/main.523f09c5.chunk.css.map",
     "static/js/2.5f9c9eeb.chunk.js.LICENSE.txt": "/TallerReact-WebAvanzada/static/js/2.5f9c9eeb.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.9c1f2752.js",
     "static/js/2.5f9c9eeb.chunk.js",
     "static/css/main.523f09c5.chunk.css",
-    "static/js/main.be29f3c9.chunk.js"
+    "static/js/main.cbb56d17.chunk.js"
   ]
 }
