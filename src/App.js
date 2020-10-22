@@ -26,7 +26,7 @@ function App() {
         <Route path="/dependencies">
           <Dependencies></Dependencies>
         </Route>
-        <Route exact path="/">
+        <Route exact path="/TallerReact-WebAvanzada/">
           
         <Login></Login>
         </Route>
