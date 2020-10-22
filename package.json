@@ -2,7 +2,7 @@
   "name": "dependency-users",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://danielgalvis98.github.io/TallerReact-WebAvanzada",
+  "homepage": "http://danielgalvis98.github.io/TallerReact-WebAvanzada/",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
