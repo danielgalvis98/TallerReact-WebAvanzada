@@ -14,12 +14,12 @@ export default class User extends Component {
     }
 
     handleEditUser = () => {
-       
+
         this.props.onEdit(this.props.user);
     }
 
     ButtonOptionsVisible = () => {
-        if (this.props.manegeable){
+        if (this.props.manegeable) {
             return (<td>
                 <span className="col-3">
                     <button type="button" className="btn btn-danger" onClick={this.handleDeleteUser}><i className="fa fa-trash-o" aria-hidden="true"></i></button>
@@ -27,7 +27,7 @@ export default class User extends Component {
                 <span className="col-3">
                     <button type="button" className="btn btn-primary" onClick={this.handleEditUser}><i className="fa fa-pencil" aria-hidden="true"></i></button>
                 </span>
-              
+
             </td>);
         }
         return null;
@@ -39,7 +39,16 @@ export default class User extends Component {
             dependency: dependency.data()
         })
     }
-   
+
+    componentDidUpdate = async (prevProps, prevState) => {
+        if (prevProps.user.dependency !== this.props.user.dependency) {
+            const dependency = await this.props.user.dependency.get();
+            this.setState({
+                dependency: dependency.data()
+            })
+        }
+    }
+
 
     render() {
         return (
@@ -54,7 +63,7 @@ export default class User extends Component {
                     <td>{this.props.user.active ? "Sí" : "No"}</td>
                     <this.ButtonOptionsVisible />
                 </tr>
-                
+
             </>
         )
     }

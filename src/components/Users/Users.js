@@ -73,6 +73,7 @@ export default class Users extends Component {
     }
 
     renderUsers = () => {
+        console.log(this.state.users[2]);
         let usersTable = this.state.users.map(user => <User key={user.name} user={user}
             onDelete={this.deleteUser} onEdit={this.startEditUser} manegeable={true}/>);
         return usersTable;
