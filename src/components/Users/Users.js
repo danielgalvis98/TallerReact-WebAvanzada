@@ -16,9 +16,12 @@ export default class Users extends Component {
         super();
         this.state = {
             search: '',
-
+            filter: {
+                dependency_id: ''
+            },
             users: [],
             userToEdit: this.clearUser(),
+            dependenciesQuery: [],
         }
     }
 
@@ -28,7 +31,7 @@ export default class Users extends Component {
         try {
             const query = await db.collection('users').get();
             users = query.docs.map(doc => doc.data());
-            
+
             this.setState({
                 users
             });
@@ -38,8 +41,16 @@ export default class Users extends Component {
     }
 
     componentDidMount = async () => {
-        
+        const query = await db.collection('dependencies').get();
+        this.setState({
+            dependenciesQuery: query.docs.map(doc => doc.data()),
+        })
         this.refresh();
+    }
+
+    renderDependencyOptions = () => {
+        let dependenciesOptions = this.state.dependenciesQuery.map(dependency => (<option value={dependency.id} key={dependency.id}>{dependency.name}</option>));
+        return dependenciesOptions;
     }
 
     addUser = async (user) => {
@@ -95,16 +106,25 @@ export default class Users extends Component {
         };
     }
 
-    updateSearch = (text) =>{
+    updateSearch = (text) => {
         this.setState({ search: text.target.value })
     }
 
- 
+    handleInputChange = (event) => {
+        this.setState({
+            filter: {
+                dependency_id: event.target.value,
+            } 
+        })
+    }
+
     render() {
-        let filteredUsers = this.state.users.filter(
+        let filteredUsersByName = this.state.users.filter(
             (user) => {
-               console.log(user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
-                return user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+                console.log(user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1);
+                console.log(user.dependency.id);
+                return user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+                    &&( this.state.filter.dependency_id === '' || user.dependency.id === this.state.filter.dependency_id);
             }
         )
         return (
@@ -120,14 +140,20 @@ export default class Users extends Component {
                                 value={this.state.search}
                                 placeholder="Buscar Usuario por Nombre"
                                 variant="outlined"
-                                onChange={this.updateSearch.bind(this)}
+                                onChange={this.updateSearch}
                             />
                         </Box>
                     </CardContent>
 
+                    <select className="form-control" id="dependency_id" value={this.state.filter.dependency_id} onChange={this.handleInputChange} noValidate>
+                        <option value=''>Mostrar Todos</option>
+                        {this.renderDependencyOptions()}
+                    </select>
+
                 </Box>
+                <label>Dependencia</label>
                 <div className="container">
-                    <h3>Check out the users!</h3>
+                    <h3>Mira los usuarios!</h3>
                 </div>
                 <div className="container">
                     <table className="table">
@@ -145,7 +171,7 @@ export default class Users extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {filteredUsers.map(user => <User key={user.name} user={user}
+                            {filteredUsersByName.map(user => <User key={user.name} user={user}
                                 onDelete={this.deleteUser} onEdit={this.startEditUser} manegeable={true} />)}
                         </tbody>
                     </table>

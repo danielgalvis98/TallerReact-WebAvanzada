@@ -91,7 +91,7 @@ export default class Dependencies extends Component {
         return (
             <div>
                 <div className="container">
-                    <h3>Check out your dependencies!</h3>
+                    <h3>Mira las dependencias!</h3>
                 </div>
                 <div className="container">
                     <table className="table">

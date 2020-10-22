@@ -152,6 +152,7 @@ export default class AddUser extends Component {
         let dependenciesOptions = this.state.dependenciesQuery.map(dependency => (<option value={dependency.id} key={dependency.id}>{dependency.name}</option>));
         return dependenciesOptions;
     }
+    
     render() {
         const errors = this.state.errors;
         return (
