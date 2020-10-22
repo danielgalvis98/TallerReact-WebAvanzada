@@ -16,6 +16,7 @@ export default class Users extends Component {
         super();
         this.state = {
             search: '',
+            dependencies: [],
             users: [],
             userToEdit: this.clearUser(),
         }
@@ -27,6 +28,7 @@ export default class Users extends Component {
         try {
             const query = await db.collection('users').get();
             users = query.docs.map(doc => doc.data());
+            
             this.setState({
                 users
             });
@@ -36,6 +38,7 @@ export default class Users extends Component {
     }
 
     componentDidMount = async () => {
+        
         this.refresh();
     }
 
@@ -96,9 +99,15 @@ export default class Users extends Component {
         this.setState({ search: text.target.value })
     }
 
+    getDependencyName(user){
+        const dependency =  user[0].dependency.get();
+        console.log(dependency.data().name)
+        return dependency.data().name
+    }
     render() {
         let filteredUsers = this.state.users.filter(
             (user) => {
+               console.log(user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1)
                 return user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
             }
         )
