@@ -1,10 +1,10 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "ffce7f17d7b89374cb471a62f7a820e5",
+    "revision": "a36e121aaa488324af703543308e2eb4",
     "url": "/TallerReact-WebAvanzada/index.html"
   },
   {
-    "revision": "a688ccc6196e55596c23",
+    "revision": "34bb80fc09c816c403d9",
     "url": "/TallerReact-WebAvanzada/static/css/main.523f09c5.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/TallerReact-WebAvanzada/static/js/2.5f9c9eeb.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a688ccc6196e55596c23",
-    "url": "/TallerReact-WebAvanzada/static/js/main.cbb56d17.chunk.js"
+    "revision": "34bb80fc09c816c403d9",
+    "url": "/TallerReact-WebAvanzada/static/js/main.5303e12f.chunk.js"
   },
   {
     "revision": "0d85e9ea660ee4078ee8",
