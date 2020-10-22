@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import db from '../../config/firebase';
+import validator from 'validator';
 
 export default class AddUser extends Component {
     constructor() {
@@ -69,7 +70,7 @@ export default class AddUser extends Component {
     handleInputChange = (event) => {
         let errors = this.state.errors;
         const { id, value } = event.target;
-        console.log(value);
+        
         switch (id) {
             case 'name':
                 errors.name =
@@ -80,8 +81,9 @@ export default class AddUser extends Component {
                     value === '' ? 'El apellido es obligatorio' : '';
                 break;
             case 'email':
+               
                 errors.email =
-                    value === '' ? 'El email es obligatorio' : '';
+                validator.isEmail(value)? '' : 'El email debe ser valido';
                 break;
             case 'password':
                 errors.password =
