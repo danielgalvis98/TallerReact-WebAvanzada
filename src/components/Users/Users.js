@@ -142,16 +142,18 @@ export default class Users extends Component {
                                 variant="outlined"
                                 onChange={this.updateSearch}
                             />
-                        </Box>
-                    </CardContent>
-
-                    <select className="form-control" id="dependency_id" value={this.state.filter.dependency_id} onChange={this.handleInputChange} noValidate>
+                            <label> Buscar por Dependencia</label>
+                            <select className="form-control" id="dependency_id" value={this.state.filter.dependency_id} onChange={this.handleInputChange} noValidate>
                         <option value=''>Mostrar Todos</option>
                         {this.renderDependencyOptions()}
                     </select>
+                        </Box>
+                    </CardContent>
+
+                    
 
                 </Box>
-                <label>Dependencia</label>
+                
                 <div className="container">
                     <h3>Mira los usuarios!</h3>
                 </div>

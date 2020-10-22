@@ -50,7 +50,7 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="static">
         <Toolbar>
-        <Link to="/" >
+        <Link to="/TallerReact-WebAvanzada/" >
           <Typography className={classes.title} variant="h6"  noWrap>
              Gestión de Usuarios 
             
