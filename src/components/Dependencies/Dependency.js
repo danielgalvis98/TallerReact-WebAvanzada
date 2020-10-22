@@ -13,7 +13,11 @@ export default class Dependency extends Component {
     }
 
     handleDeleteDependency = () => {
-        this.props.onDelete(this.props.dependency);
+        if (this.state.users.length > 0){
+            alert('No se puede eliminar la dependencia: Hay usuarios asociados');
+        } else {
+            this.props.onDelete(this.props.dependency);
+        }
     }
 
     handleEditDependency = () => {
