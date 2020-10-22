@@ -21,7 +21,7 @@ export default class Dependencies extends Component {
             const query = await db.collection('dependencies').get();
             dependencies = query.docs.map(doc => doc.data());
             this.setState({
-                dependencies
+                dependencies,
             });
         } catch (error) {
             console.log(error);

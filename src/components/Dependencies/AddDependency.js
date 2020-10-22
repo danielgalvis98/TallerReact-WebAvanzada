@@ -20,7 +20,6 @@ export default class AddDependency extends Component {
     }
 
     static getDerivedStateFromProps = (nextProps, prevState) => {
-        console.log(nextProps.dependency.id);
         if (nextProps.dependency.id !== prevState.id) {
             return {
                 id: nextProps.dependency.id,
@@ -77,6 +76,7 @@ export default class AddDependency extends Component {
     handleBoxChange = (event) => {
         event.preventDefault();
         this.setState({ [event.target.id]: event.target.checked });
+        alert(this.state.active);
     }
 
     handleSubmit = (e) => {

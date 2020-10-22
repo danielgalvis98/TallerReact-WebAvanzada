@@ -1,11 +1,14 @@
 import React, { Component } from 'react'
+import User from '../Users/User';
+import db from '../../config/firebase';
 
 export default class Dependency extends Component {
 
     constructor() {
         super();
         this.state = {
-            showUsers: false
+            showUsers: false,
+            users: [],
         }
     }
 
@@ -22,9 +25,30 @@ export default class Dependency extends Component {
         })
     }
 
+    usersByDependencies = async () => {
+        const thisDependency = db.collection("dependencies").doc(this.props.dependency.id);
+        console.log(thisDependency);
+        const usersQuery = await db.collection("users").where("dependency", "==", thisDependency).get();
+        const users = usersQuery.docs.map(user => user.data());
+        return users;
+    }
+
+    componentDidMount = async() => {
+        const users = await this.usersByDependencies();
+        this.setState({
+            users
+        });
+    }
+
+    renderUsers = () => {
+        console.log(this.state.users);
+        let usersTable = this.state.users.map(user => <User key={user.name} user={user}
+            manegeable={false}/>);
+        return usersTable;
+    }
+
     ShowUsersIfActivated = () => {
-        const showTable = this.state.showUsers;
-        if (showTable) {
+        if (this.state.showUsers) {
             return (<div className="container">
                 <h2>Users in {this.props.dependency.name}</h2>
                 <table className="table">
@@ -32,14 +56,16 @@ export default class Dependency extends Component {
                         <tr>
                             <th scope="col">Nombre</th>
                             <th scope="col">Apellido</th>
-                            <th scope="col">Correo</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Contraseña</th>
+                            <th scope="col">Dependencia</th>
+                            <th scope="col">Valido Hasta</th>
+                            <th scope="col">Activo</th>
                         </tr>
                     </thead>
-                    <tr>
-                        <td>El</td>
-                        <td>Pepe</td>
-                        <td>pepe@pepe.org.com</td>
-                    </tr>
+                    <tbody>
+                        {this.renderUsers()}
+                    </tbody>
                 </table>
             </div>);
         }
@@ -63,7 +89,7 @@ export default class Dependency extends Component {
                             <button type="button" className="btn btn-primary" onClick={this.handleEditDependency}><i className="fa fa-pencil" aria-hidden="true"></i></button>
                         </span>
                         <span className="col-3">
-                            <button type="button" className="btn btn-primary" onClick={this.handleShowHideUsers}><i class="fa fa-users" aria-hidden="true"></i></button>
+                            <button type="button" className="btn btn-primary" onClick={this.handleShowHideUsers}><i className="fa fa-users" aria-hidden="true"></i></button>
                         </span>
                     </td>
                 </tr>
