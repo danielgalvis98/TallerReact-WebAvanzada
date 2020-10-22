@@ -16,7 +16,7 @@ export default class Users extends Component {
         super();
         this.state = {
             search: '',
-            dependencies: [],
+
             users: [],
             userToEdit: this.clearUser(),
         }
@@ -99,11 +99,7 @@ export default class Users extends Component {
         this.setState({ search: text.target.value })
     }
 
-    getDependencyName(user){
-        const dependency =  user[0].dependency.get();
-        console.log(dependency.data().name)
-        return dependency.data().name
-    }
+ 
     render() {
         let filteredUsers = this.state.users.filter(
             (user) => {
