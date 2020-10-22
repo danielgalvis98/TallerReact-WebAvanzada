@@ -112,7 +112,7 @@ export default class AddUser extends Component {
     handleBoxChange = (event) => {
         this.setState({ [event.target.id]: event.target.checked });
     }
-
+   
     handleSubmit = (e) => {
         e.preventDefault();
         if (this.validateForm(this.state.errors)) {
@@ -121,7 +121,15 @@ export default class AddUser extends Component {
             }
             const { errors, dependency_id, dependenciesQuery, ...toAdd } = this.state;
 
+           
+            var bcrypt = require('bcryptjs');
+            var salt = bcrypt.genSaltSync(10);
+            var hash = bcrypt.hashSync(toAdd.password, salt);
+            toAdd.password = hash
+          
+        
             this.props.handleNewUser(toAdd);
+            
         }
     }
 
@@ -165,7 +173,7 @@ export default class AddUser extends Component {
                         </div>
                         <div className="form-group">
                             <label>Email</label>
-                            <input className="form-control" type="email" id="email" value={this.state.email}
+                            <input className="form-control" type="email" id="email" aria-describedby="emailHelp" value={this.state.email}
                                 onChange={this.handleInputChange} noValidate />
                             {errors.email.length > 0 &&
                                 <div className='alert alert-danger'>{errors.email}</div>}

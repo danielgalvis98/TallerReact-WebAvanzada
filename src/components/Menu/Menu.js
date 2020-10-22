@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom'
 
 import AccountCircle from '@material-ui/icons/AccountCircle';
-
+import GroupIcon from '@material-ui/icons/Group';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -59,17 +59,38 @@ export default function PrimarySearchAppBar() {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
         
-          <Link to="/" >
+          <Link to="/users" >
             <IconButton
               edge="end"
               aria-label="account of current user"
               aria-controls={menuId}
               aria-haspopup="true"
             > 
-              <AccountCircle />
-            </IconButton>
-            </Link>
 
+              <AccountCircle />
+              <Typography className={classes.title}  noWrap>
+             Usuarios
+            
+          </Typography>
+            </IconButton>
+            
+            </Link>
+            <Link to="/dependencies" >
+            <IconButton
+              edge="end"
+              aria-label="account of current user"
+              aria-controls={menuId}
+              aria-haspopup="true"
+            > 
+
+              <GroupIcon />
+              <Typography className={classes.title}  noWrap>
+             Dependencias
+            
+          </Typography>
+            </IconButton>
+            
+            </Link>
        
           </div>
          

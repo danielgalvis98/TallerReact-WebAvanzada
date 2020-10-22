@@ -7,15 +7,15 @@ import {
 
     CardContent,
     TextField,
-    InputAdornment,
- 
-  } from '@material-ui/core';
+
+} from '@material-ui/core';
 
 export default class Users extends Component {
 
     constructor() {
         super();
         this.state = {
+            search: '',
             users: [],
             userToEdit: this.clearUser(),
         }
@@ -40,25 +40,25 @@ export default class Users extends Component {
     }
 
     addUser = async (user) => {
-        if (user.id === 0){
+        if (user.id === 0) {
             const date = new Date();
-            user.id = date.getTime()+ ""; 
+            user.id = date.getTime() + "";
         }
         try {
-            const res = await db.collection('users').doc(user.id+'').set(user);
+            const res = await db.collection('users').doc(user.id + '').set(user);
             console.log(res);
         } catch (error) {
             console.error(error);
         }
-        this.setState({userToEdit: this.clearUser()});
+        this.setState({ userToEdit: this.clearUser() });
         this.refresh();
     }
 
     deleteUser = async (user) => {
-        
-        //TODO CHECKE THERE ARE NO USERS ASIGNED TO THE DEPENDENCY
+
+
         try {
-            const res = await db.collection('users').doc(user.id+'').delete();
+            const res = await db.collection('users').doc(user.id + '').delete();
             console.log(res);
         } catch (error) {
             console.log(error);
@@ -72,17 +72,11 @@ export default class Users extends Component {
         });
     }
 
-    renderUsers = () => {
-        console.log(this.state.users[2]);
-        let usersTable = this.state.users.map(user => <User key={user.name} user={user}
-            onDelete={this.deleteUser} onEdit={this.startEditUser} manegeable={true}/>);
-        return usersTable;
-    }
 
-    clearFields = () =>{
+    clearFields = () => {
         this.setState({
             userToEdit: this.clearUser()
-        })    
+        })
     }
 
     clearUser = () => {
@@ -98,32 +92,36 @@ export default class Users extends Component {
         };
     }
 
+    updateSearch = (text) =>{
+        this.setState({ search: text.target.value })
+    }
+
     render() {
+        let filteredUsers = this.state.users.filter(
+            (user) => {
+                return user.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1;
+            }
+        )
         return (
-            
+
             <div>
-               
+
                 <Box  >
-       
-          <CardContent>
-            <Box maxWidth={400}>
-              <TextField
-                fullWidth
-                InputProps={{
-                  startAdornment: (
-                    <InputAdornment position="start">
-                 
-                    </InputAdornment>
-                  )
-                }}
-                placeholder="Buscar Usuario"
-                variant="outlined"
-              />
-            </Box>
-          </CardContent>
-        
-      </Box>
-      <div className="container">
+
+                    <CardContent>
+                        <Box maxWidth={400}>
+                            <TextField
+                                fullWidth
+                                value={this.state.search}
+                                placeholder="Buscar Usuario por Nombre"
+                                variant="outlined"
+                                onChange={this.updateSearch.bind(this)}
+                            />
+                        </Box>
+                    </CardContent>
+
+                </Box>
+                <div className="container">
                     <h3>Check out the users!</h3>
                 </div>
                 <div className="container">
@@ -142,15 +140,16 @@ export default class Users extends Component {
                             </tr>
                         </thead>
                         <tbody>
-                            {this.renderUsers()}
+                            {filteredUsers.map(user => <User key={user.name} user={user}
+                                onDelete={this.deleteUser} onEdit={this.startEditUser} manegeable={true} />)}
                         </tbody>
                     </table>
                 </div>
-                
+
                 <div className="container">
-                <hr/>
-                    <AddUser handleNewUser={this.addUser} user={this.state.userToEdit} handleClearFields={this.clearFields}/>
-                
+                    <hr />
+                    <AddUser handleNewUser={this.addUser} user={this.state.userToEdit} handleClearFields={this.clearFields} />
+
                 </div>
             </div>
         )
